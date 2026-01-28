@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caesar Cipher Encoder/Decoder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-lock"></i> Caesar Cipher Tool</h1>
+            <p class="subtitle">Encode and decode messages using the classic Caesar cipher or the enhanced rolling cipher extension.</p>
+        </header>
+        
+        <div class="app-container">
+            <div class="card">
+                <div class="cipher-type-selector">
+                    <div class="cipher-tab active" id="basic-tab">Basic Caesar Cipher</div>
+                    <div class="cipher-tab" id="rolling-tab">Rolling Cipher (Extension)</div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="message"><i class="fas fa-font"></i> Message to encode/decode:</label>
+                    <textarea id="message" placeholder="Enter your message here...">Hello, World! This is a secret message.</textarea>
+                </div>
+                
+                <div id="basic-cipher-inputs">
+                    <div class="key-inputs">
+                        <div class="key-box">
+                            <label for="key1">Shift Key (1-25):</label>
+                            <input type="number" id="key1" min="1" max="25" value="3">
+                        </div>
+                    </div>
+                    
+                    <div class="cipher-explanation">
+                        <p><strong>Basic Caesar Cipher:</strong> Each letter in the message is shifted by the same key value. For example, with a key of 3: A → D, B → E, C → F, etc.</p>
+                    </div>
+                </div>
+                
+                <div id="rolling-cipher-inputs" style="display: none;">
+                    <div class="key-inputs">
+                        <div class="key-box">
+                            <label for="rolling-key1">Base Shift Key (1-25):</label>
+                            <input type="number" id="rolling-key1" min="1" max="25" value="3">
+                        </div>
+                        <div class="key-box">
+                            <label for="rolling-key2">Increment Key (1-10):</label>
+                            <input type="number" id="rolling-key2" min="1" max="10" value="2">
+                        </div>
+                    </div>
+                    
+                    <div class="cipher-explanation">
+                        <p><strong>Rolling Cipher Extension:</strong> The shift value changes for each letter based on both keys. For letter at position <i>n</i> (starting from 0), the shift is: <i>Key1 + (n × Key2)</i> mod 26.</p>
+                        <p>Example with Key1=3, Key2=2:</p>
+                        <ul>
+                            <li>1st letter (n=0): shift = 3 + (0×2) = 3</li>
+                            <li>2nd letter (n=1): shift = 3 + (1×2) = 5</li>
+                            <li>3rd letter (n=2): shift = 3 + (2×2) = 7</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="encode" name="operation" value="encode" checked>
+                        <label for="encode"><i class="fas fa-lock"></i> Encode Message</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="decode" name="operation" value="decode">
+                        <label for="decode"><i class="fas fa-lock-open"></i> Decode Message</label>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="process-btn">
+                        <i class="fas fa-cogs"></i> Process Message
+                    </button>
+                    <button class="btn btn-secondary" id="reset-btn">
+                        <i class="fas fa-redo"></i> Reset
+                    </button>
+                </div>
+                
+                <div class="result-container">
+                    <div class="result-title"><i class="fas fa-poll"></i> Result:</div>
+                    <div class="result-box" id="result">Your encoded or decoded message will appear here...</div>
+                </div>
+            </div>
+            
+            <div class="info-box">
+                <h3><i class="fas fa-info-circle"></i> How It Works</h3>
+                <div class="cipher-explanation">
+                    <p>The Caesar cipher is one of the simplest encryption techniques. It works by shifting each letter in the plaintext by a fixed number of positions down the alphabet.</p>
+                    <p><strong>Encoding:</strong> Letters are shifted forward by the key value.</p>
+                    <p><strong>Decoding:</strong> Letters are shifted backward by the key value.</p>
+                    <p><strong>Non-alphabetic characters</strong> (spaces, punctuation, numbers) remain unchanged.</p>
+                    <p>The <strong>Rolling Cipher extension</strong> increases security by changing the shift for each letter, making it harder to crack through frequency analysis.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Caesar Cipher Web App | Created for GitHub Pages Deployment</p>
+            <p>Repository: <a href="https://github.com/anballem/caesar-cipher-app" target="_blank">github.com/anballem/caesar-cipher-app</a> | Live Demo: <a href="https://anballem.github.io/caesar-cipher-app" target="_blank">anballem.github.io/caesar-cipher-app</a></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
